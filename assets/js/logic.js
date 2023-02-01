@@ -3,6 +3,7 @@ var btn = document.querySelector("button");
 var time = document.querySelector("#time");
 var startScreen = document.querySelector("#start-screen");
 var questionsScreen = document.getElementById("questions").style.display = "block";
+var endScreen = document.getElementById("end-screen");
 questions.style.display = "none";
 
 //start function
@@ -21,7 +22,8 @@ function startGame() {
 
 //end the game function
 function endGame() {
-
+    questions.style.display = "none";
+    endScreen.style.display = "block";
 }
 
 // countdown function with the time left var.
@@ -40,7 +42,7 @@ function countdown() {
     }, 1000);
 }
 
-// create an ol and buttons for the questions.
+// create an ol and buttons for the questions, then append them.
 var ol = document.createElement("ol");
 var li = document.createElement("button");
 var li2 = document.createElement("button");
@@ -58,26 +60,31 @@ choices.appendChild(ol);
 function firstGame() {
     question.textContent = allQuestions[0].givenQuestion; 
     li.textContent = allQuestions[0].givenChoices[0];
-    li2.textContent = allQuestions[0].givenChoices[1];
+    li2.textContent = allQuestions[0].givenChoices[1]; // correct answer.
     li3.textContent = allQuestions[0].givenChoices[2];
     li4.textContent = allQuestions[0].givenChoices[3];
+    
     choices.addEventListener("click", function(event){
-        secondGame();
-        if(event.target = li2){
+        if (event.target !== li2) {
+            timeLeft = timeLeft - 10;
         }
+        secondGame();
     });
 }
 // second Game function
 function secondGame() {
     question.textContent = allQuestions[1].givenQuestion; 
-    li.textContent = allQuestions[1].givenChoices[0];
+    li.textContent = allQuestions[1].givenChoices[0]; // correct answer.
     li2.textContent = allQuestions[1].givenChoices[1];
     li3.textContent = allQuestions[1].givenChoices[2];
     li4.textContent = allQuestions[1].givenChoices[3];
+
     choices.addEventListener("click", function(event){
-        thirdGame();
-        if(event.target = li2){
+        if (event.target !== li) {
+            timeLeft = timeLeft - 10;
         }
+        thirdGame();
+        
     });
 }
 // third Game function
@@ -86,6 +93,14 @@ function thirdGame() {
     li.textContent = allQuestions[2].givenChoices[0];
     li2.textContent = allQuestions[2].givenChoices[1];
     li3.textContent = allQuestions[2].givenChoices[2];
-    li4.textContent = allQuestions[2].givenChoices[3];
+    li4.textContent = allQuestions[2].givenChoices[3]; // correct answer.
+
+    choices.addEventListener("click", function(event){
+        if (event.target !== li4) {
+            timeLeft = timeLeft - 10;
+        }
+        endGame();
+    });
+
 }
 
