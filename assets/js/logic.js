@@ -29,13 +29,14 @@ function endGame() {
     endScreen.style.display = "block";
     timeLeft = 1;
     endScreen.addEventListener("click", function (event) {
-        if (event.target.id === "submit") {
+        // if the target of the click is submit button only and the initials input field is not empty, then execute below code
+        if (event.target.id === "submit" && initials.value !== "") {
             window.location.href = "highscores.html";
         }
     })
 }
 
-// countdown function with the time left var.
+// countdown function with the time left variable.
 var timeLeft = 76;
 function countdown() {
     var timeInterval = setInterval(function () {
@@ -51,7 +52,7 @@ function countdown() {
     }, 1000);
 }
 
-// create an ol and buttons for the questions, then append them.
+// creates an ol and buttons for the questions, then append them.
 var ol = document.createElement("ol");
 var li = document.createElement("button");
 var li2 = document.createElement("button");
