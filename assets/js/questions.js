@@ -1,8 +1,8 @@
-let questions = document.querySelector("#questions");
-let question = document.querySelector("#question-title");
-let choices = document.querySelector("#choices");
+var questions = document.querySelector("#questions");
+var question = document.querySelector("#question-title");
+var choices = document.querySelector("#choices");
 
-let allQuestions = [
+var allQuestions = [
     {    
     givenQuestion: "Which operator is used to assign a value to a variable?",    
     givenChoices: ["*", "=", "-", "+"]

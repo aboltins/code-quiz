@@ -9,7 +9,7 @@ var highScores = [];
 var initials = document.getElementById("initials");
 questions.style.display = "none";
 
-//start function
+//start quiz function
 startBtn.addEventListener("click", function () {
     startGame();
     countdown();
@@ -28,12 +28,40 @@ function endGame() {
     questions.style.display = "none";
     endScreen.style.display = "block";
     timeLeft = 1;
+    console.log(finalScore);
     endScreen.addEventListener("click", function (event) {
         // if the target of the click is submit button only and the initials input field is not empty, then execute below code
         if (event.target.id === "submit" && initials.value !== "") {
+            // get the stored high scores from local storage
+            var storedHighScores = JSON.parse(localStorage.getItem("highScores")) || [];
+
+            // Stores both the user and score together as one object.
+            var userScore = {
+                user: initials.value,
+                score: finalScore.textContent
+            };
+
+            // Check if the same score already exists in the stored array
+            var scoreExists = false;
+            for (var i = 0; i < storedHighScores.length; i++) {
+                if (storedHighScores[i].score === userScore.score) {
+                    scoreExists = true;
+                    break;
+                }
+            }
+
+            // Add the new user score to the stored high scores array if it doesn't already exist
+            if (!scoreExists) {
+                storedHighScores.push(userScore);
+            }
+
+            // Store the updated high scores in local storage
+            localStorage.setItem("highScores", JSON.stringify(storedHighScores));
+
+            // directs to highscores.html page.
             window.location.href = "highscores.html";
         }
-    })
+    });
 }
 
 // countdown function with the time left variable.
@@ -52,7 +80,7 @@ function countdown() {
     }, 1000);
 }
 
-// creates an ol and buttons for the questions, then append them.
+// creates an ol and buttons for the questions, then appends them.
 var ol = document.createElement("ol");
 var li = document.createElement("button");
 var li2 = document.createElement("button");
@@ -113,6 +141,5 @@ function thirdGame() {
         }
         endGame();
     });
-
 }
 
