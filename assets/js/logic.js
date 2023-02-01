@@ -16,7 +16,7 @@ function startGame() {
     startScreen.style.display = "none";
     questions.style.display = "inherit";
     // questionsScreen.style.display = "block";
-    getQuestions();
+    firstGame();
 }
 
 //end the game function
@@ -40,23 +40,52 @@ function countdown() {
     }, 1000);
 }
 
-// // Get questions function with a for loop to iterate over questions.
-// function getQuestions (){
-function getQuestions(){
-    for (var i = 0; i < allQuestions.length; i++) {
-        var currentQuestion = allQuestions[i];
-    
-        question.textContent = currentQuestion.givenQuestion;
-    
-        var currentChoices = currentQuestion.givenChoices;
-        choices.innerHTML = "";
-        for (var j = 0; j < currentChoices.length; j++) {
-            var choice = currentChoices[j];
-            var choiceButton = document.createElement("button");
-            choiceButton.textContent = choice;
-            choices.appendChild(choiceButton);
-        }
-    }
-}
+// create an ol and buttons for the questions.
+var ol = document.createElement("ol");
+var li = document.createElement("button");
+var li2 = document.createElement("button");
+var li3 = document.createElement("button");
+var li4 = document.createElement("button");
 
+ol.appendChild(li);
+ol.appendChild(li2);
+ol.appendChild(li3);
+ol.appendChild(li4);
+
+choices.appendChild(ol);
+
+// first Game function
+function firstGame() {
+    question.textContent = allQuestions[0].givenQuestion; 
+    li.textContent = allQuestions[0].givenChoices[0];
+    li2.textContent = allQuestions[0].givenChoices[1];
+    li3.textContent = allQuestions[0].givenChoices[2];
+    li4.textContent = allQuestions[0].givenChoices[3];
+    choices.addEventListener("click", function(event){
+        secondGame();
+        if(event.target = li2){
+        }
+    });
+}
+// second Game function
+function secondGame() {
+    question.textContent = allQuestions[1].givenQuestion; 
+    li.textContent = allQuestions[1].givenChoices[0];
+    li2.textContent = allQuestions[1].givenChoices[1];
+    li3.textContent = allQuestions[1].givenChoices[2];
+    li4.textContent = allQuestions[1].givenChoices[3];
+    choices.addEventListener("click", function(event){
+        thirdGame();
+        if(event.target = li2){
+        }
+    });
+}
+// third Game function
+function thirdGame() {
+    question.textContent = allQuestions[2].givenQuestion; 
+    li.textContent = allQuestions[2].givenChoices[0];
+    li2.textContent = allQuestions[2].givenChoices[1];
+    li3.textContent = allQuestions[2].givenChoices[2];
+    li4.textContent = allQuestions[2].givenChoices[3];
+}
 
