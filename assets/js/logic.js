@@ -16,7 +16,7 @@ function startGame() {
     startScreen.style.display = "none";
     questions.style.display = "inherit";
     // questionsScreen.style.display = "block";
-    firstGame();
+    getQuestions();
 }
 
 //end the game function
@@ -40,6 +40,23 @@ function countdown() {
     }, 1000);
 }
 
-
+// // Get questions function with a for loop to iterate over questions.
+// function getQuestions (){
+function getQuestions(){
+    for (var i = 0; i < allQuestions.length; i++) {
+        var currentQuestion = allQuestions[i];
+    
+        question.textContent = currentQuestion.givenQuestion;
+    
+        var currentChoices = currentQuestion.givenChoices;
+        choices.innerHTML = "";
+        for (var j = 0; j < currentChoices.length; j++) {
+            var choice = currentChoices[j];
+            var choiceButton = document.createElement("button");
+            choiceButton.textContent = choice;
+            choices.appendChild(choiceButton);
+        }
+    }
+}
 
 
