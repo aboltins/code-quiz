@@ -2,6 +2,8 @@ var questions = document.querySelector("#questions");
 var question = document.querySelector("#question-title");
 var choices = document.querySelector("#choices");
 
+// all questions below
+
 var allQuestions = [
     {    
     givenQuestion: "Which operator is used to assign a value to a variable?",    
