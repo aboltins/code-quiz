@@ -65,7 +65,7 @@ function endGame() {
 }
 
 // countdown function with the time left variable.
-var timeLeft = 76;
+var timeLeft = 11;
 function countdown() {
     var timeInterval = setInterval(function () {
         timeLeft--;
@@ -103,13 +103,23 @@ function firstGame() {
     li3.textContent = allQuestions[0].givenChoices[2];
     li4.textContent = allQuestions[0].givenChoices[3];
 
-    choices.addEventListener("click", function (event) {
-        if (event.target !== li2) {
-            timeLeft = timeLeft - 10;
-        }
-        secondGame();
-    });
+    // adds click event
+    choices.addEventListener("click", firstGameClick);
 }
+
+function firstGameClick(event) {
+    // if the clicked is not li2 then take 10 seconds off
+    if (event.target !== li2) {
+        timeLeft = timeLeft - 10;
+    }
+    // removes above click event as only needed once
+    choices.removeEventListener("click", firstGameClick);
+    // finalscore is whatever the time is left in this case it would be zero if times out.
+    finalScore.textContent = timeLeft;
+    // calls the next game
+    secondGame();
+}
+
 // second Game function
 function secondGame() {
     question.textContent = allQuestions[1].givenQuestion;
@@ -118,14 +128,18 @@ function secondGame() {
     li3.textContent = allQuestions[1].givenChoices[2];
     li4.textContent = allQuestions[1].givenChoices[3];
 
-    choices.addEventListener("click", function (event) {
-        if (event.target !== li) {
-            timeLeft = timeLeft - 10;
-        }
-        thirdGame();
-
-    });
+    choices.addEventListener("click", secondGameClick);
 }
+
+function secondGameClick(event) {
+    if (event.target !== li) {
+        timeLeft = timeLeft - 10;
+    }
+    choices.removeEventListener("click", secondGameClick);
+    finalScore.textContent = timeLeft;
+    thirdGame();
+}
+
 // third Game function
 function thirdGame() {
     question.textContent = allQuestions[2].givenQuestion;
@@ -134,12 +148,38 @@ function thirdGame() {
     li3.textContent = allQuestions[2].givenChoices[2];
     li4.textContent = allQuestions[2].givenChoices[3]; // correct answer.
 
+
+    choices.addEventListener("click", thirdGameClick);
+}
+
+function thirdGameClick(event) {
+    if (event.target !== li4) {
+        timeLeft = timeLeft - 10;
+    }
+    choices.removeEventListener("click", thirdGameClick);
     finalScore.textContent = timeLeft;
-    choices.addEventListener("click", function (event) {
-        if (event.target !== li4) {
-            timeLeft = timeLeft - 10;
-        }
-        endGame();
-    });
+    fourthGame();
+}
+
+// fourth Game function
+function fourthGame() {
+    question.textContent = allQuestions[3].givenQuestion;
+    li.textContent = allQuestions[3].givenChoices[0];
+    li2.textContent = allQuestions[3].givenChoices[1];
+    li3.textContent = allQuestions[3].givenChoices[2]; // correct answer.
+    li4.textContent = allQuestions[3].givenChoices[3];
+
+
+    choices.addEventListener("click", fourthGameClick);
+}
+
+function fourthGameClick(event) {
+    if (event.target !== li3) {
+        timeLeft = timeLeft - 10;
+    }
+    choices.removeEventListener("click", fourthGameClick);
+    finalScore.textContent = timeLeft;
+    // calls the end of the game function
+    endGame();
 }
 

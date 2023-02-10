@@ -24,10 +24,16 @@ var allQuestions = [
         "for i = 1 to 5",
         "for (i = 0; i <= 5; i++)"
     ]
+},
+
+{
+    givenQuestion: "How does a WHILE loop start?",
+    givenChoices: [
+        "while (i <= 10; i++)  ",
+        "while i = 1 to 10",
+        "while (i <= 10)",
+        "while (i ===!{} 10)" 
+    ]
 }
 
 ];
-
-
-
-
