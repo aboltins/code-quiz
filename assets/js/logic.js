@@ -8,6 +8,7 @@ var finalScore = document.getElementById("final-score");
 var highScores = [];
 var initials = document.getElementById("initials");
 questions.style.display = "none";
+var feedback = document.getElementById("feedback");
 
 //start quiz function
 startBtn.addEventListener("click", function () {
@@ -30,7 +31,7 @@ function countdown() {
         timeLeft--;
         time.textContent = timeLeft;
 
-        if (timeLeft === 0 || timeLeft < 0 ) {
+        if (timeLeft === 0 || timeLeft < 0) {
             // stops execution of action at set interval
             clearInterval(timeInterval);
             // calls the end game function
@@ -39,6 +40,19 @@ function countdown() {
         // interval at how many miliseconds timer counting down
     }, 1000);
 }
+
+// function that displays the feedback bar for 0.5 seconds, the argument is filled at
+// each game function and its either "correct!" or "wrong!" .
+
+function feedbackPopUp(correctOrWrong) {
+    feedback.style.display = "block";
+    feedback.textContent = correctOrWrong;
+    setTimeout(function () {
+        feedback.style.display = "none";
+        feedback.textContent = "";
+    }, 800);
+}
+
 
 // creates an ol and buttons for the questions, then appends them.
 var ol = document.createElement("ol");
@@ -78,6 +92,9 @@ function firstGameClick(event) {
     // if the clicked is not li2 then take 10 seconds off
     if (event.target !== li2) {
         timeLeft = timeLeft - 10;
+        feedbackPopUp("Wrong!");
+    } else {
+        feedbackPopUp("Correct!");
     }
     // removes above click event from executing again
     choices.removeEventListener("click", firstGameClick);
@@ -87,6 +104,7 @@ function firstGameClick(event) {
 
 // second Game function
 function secondGame() {
+    // feedback.style.display = "none";
     question.textContent = allQuestions[1].givenQuestion;
     li.textContent = allQuestions[1].givenChoices[0]; // correct answer.
     li2.textContent = allQuestions[1].givenChoices[1];
@@ -99,6 +117,9 @@ function secondGame() {
 function secondGameClick(event) {
     if (event.target !== li) {
         timeLeft = timeLeft - 10;
+        feedbackPopUp("Wrong!");
+    } else {
+        feedbackPopUp("Correct!");
     }
     choices.removeEventListener("click", secondGameClick);
     thirdGame();
@@ -119,6 +140,9 @@ function thirdGame() {
 function thirdGameClick(event) {
     if (event.target !== li4) {
         timeLeft = timeLeft - 10;
+        feedbackPopUp("Wrong!");
+    } else {
+        feedbackPopUp("Correct!");
     }
     choices.removeEventListener("click", thirdGameClick);
     fourthGame();
@@ -139,18 +163,26 @@ function fourthGame() {
 function fourthGameClick(event) {
     if (event.target !== li3) {
         timeLeft = timeLeft - 10;
+        feedbackPopUp("Wrong!");
+    } else {
+        feedbackPopUp("Correct!");
     }
     choices.removeEventListener("click", fourthGameClick);
+    
+    if(timeLeft < 0){
+        finalScore.textContent = 0;
+    } else {
     finalScore.textContent = timeLeft;
+    }
     // calls the end of the game function
     endGame();
 }
 
 //end the game function
 function endGame() {
+    timeLeft = 1;
     questions.style.display = "none";
     endScreen.style.display = "block";
-    timeLeft = 1;
     console.log(finalScore);
     endScreen.addEventListener("click", function (event) {
         // if the target of the click is submit button only and the initials input field is not empty, then execute below code
