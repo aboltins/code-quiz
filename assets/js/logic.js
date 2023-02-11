@@ -25,7 +25,7 @@ function startGame() {
 }
 
 // countdown function with the time left variable.
-var timeLeft = 41;
+var timeLeft = 76;
 function countdown() {
     var timeInterval = setInterval(function () {
         timeLeft--;
@@ -41,7 +41,7 @@ function countdown() {
     }, 1000);
 }
 
-// function that displays the feedback bar for 0.5 seconds, the argument is filled at
+// function that displays the feedback bar for 1.2 seconds, the argument is filled at
 // each game function and its either "correct!" or "wrong!" .
 
 function feedbackPopUp(correctOrWrong) {
@@ -50,7 +50,7 @@ function feedbackPopUp(correctOrWrong) {
     setTimeout(function () {
         feedback.style.display = "none";
         feedback.textContent = "";
-    }, 800);
+    }, 1200);
 }
 
 
@@ -69,7 +69,7 @@ ol.appendChild(li4);
 choices.appendChild(ol);
 
 
-// ALL 4 GAME FUNCTIONS BELOW
+// ALL 5 GAME FUNCTIONS BELOW
 
 
 // first Game function
@@ -151,28 +151,52 @@ function thirdGameClick(event) {
 // fourth Game function
 function fourthGame() {
     question.textContent = allQuestions[3].givenQuestion;
-    li.textContent = allQuestions[3].givenChoices[0];
+    li.textContent = allQuestions[3].givenChoices[0]; // correct answer.
     li2.textContent = allQuestions[3].givenChoices[1];
-    li3.textContent = allQuestions[3].givenChoices[2]; // correct answer.
+    li3.textContent = allQuestions[3].givenChoices[2];
     li4.textContent = allQuestions[3].givenChoices[3];
-
 
     choices.addEventListener("click", fourthGameClick);
 }
 
 function fourthGameClick(event) {
-    if (event.target !== li3) {
+    if (event.target !== li) {
         timeLeft = timeLeft - 10;
         feedbackPopUp("Wrong!");
     } else {
         feedbackPopUp("Correct!");
     }
     choices.removeEventListener("click", fourthGameClick);
-    
-    if(timeLeft < 0){
+    fifthGame();
+}
+
+// fourth Game function
+function fifthGame() {
+    question.textContent = allQuestions[4].givenQuestion;
+    li.textContent = allQuestions[4].givenChoices[0];
+    li2.textContent = allQuestions[4].givenChoices[1];
+    li3.textContent = allQuestions[4].givenChoices[2]; // correct answer.
+    li4.textContent = allQuestions[4].givenChoices[3];
+
+    choices.addEventListener("click", fifthGameClick);
+}
+
+function fifthGameClick(event) {
+    if (event.target !== li3) {
+        timeLeft = timeLeft - 10;
+        feedbackPopUp("Wrong!");
+    } else {
+        feedbackPopUp("Correct!");
+    }
+    choices.removeEventListener("click", fifthGameClick);
+
+    // if time left is less than 0 (in situation where there are less than 10 seconds
+    // remaining and the user selects the wrong answer) then the finalscore is 0, otherwise
+    // finalscore is the time left)
+    if (timeLeft < 0) {
         finalScore.textContent = 0;
     } else {
-    finalScore.textContent = timeLeft;
+        finalScore.textContent = timeLeft;
     }
     // calls the end of the game function
     endGame();
@@ -180,14 +204,17 @@ function fourthGameClick(event) {
 
 //end the game function
 function endGame() {
+    // irrespective of what time was left at the end of the game, the timer will show 0.
     timeLeft = 1;
+    // hides questions and shows the endScreen
     questions.style.display = "none";
     endScreen.style.display = "block";
-    console.log(finalScore);
     endScreen.addEventListener("click", function (event) {
-        // if the target of the click is submit button only and the initials input field is not empty, then execute below code
-        if (event.target.id === "submit" && initials.value !== "") {
-            // get the stored high scores from local storage
+        // if the target of the click is submit button only and the initials input field is not empty
+        // and also The /^[a-zA-Z]{1,4}$/ regular expression checks if the value of initials contains only
+        //  letters and is between 1 and 4 characters in length. The .test() method returns a boolean 
+        // indicating whether the regular expression matches the string. (Found the /^[a-zA-Z]{1,4}$/ and test method on stackoverflow). 
+        if (event.target.id === "submit" && initials.value !== "" && /^[a-zA-Z]{1,4}$/.test(initials.value)) {
             var storedHighScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
             // Stores both the user and score together as one object.
