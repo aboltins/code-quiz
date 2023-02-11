@@ -43,6 +43,10 @@ View the completed project below on the deployed link. A screenshot has also bee
 
 [Link to the finished deployed website](https://aboltins.github.io/code-quiz)
 
+Things to note : 
+
+Initials are purposely set to only take values of letters a-z/A-Z and . , / and up to 4 characters.
+
 ## Credits
 
 N/A

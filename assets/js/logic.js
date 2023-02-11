@@ -232,10 +232,10 @@ function endGame() {
     endScreen.style.display = "block";
     endScreen.addEventListener("click", function (event) {
         // if the target of the click is submit button only and the initials input field is not empty
-        // and also The /^[a-zA-Z]{1,4}$/ regular expression checks if the value of initials contains only
-        //  letters and is between 1 and 4 characters in length. The .test() method returns a boolean 
-        // indicating whether the regular expression matches the string. (Found the /^[a-zA-Z]{1,4}$/ and test method on stackoverflow). 
-        if (event.target.id === "submit" && initials.value !== "" && /^[a-zA-Z]{1,4}$/.test(initials.value)) {
+        // and also The /^[a-zA-Z.,/]{1,4}$/ regular expression checks if the value of initials contains only
+        //  letters or .,/ and is between 1 and 4 characters in length. The .test() method returns a boolean 
+        // indicating whether the regular expression matches the string. (Found the /^[a-zA-Z.,/]{1,4}$/ and test method on stackoverflow). 
+        if (event.target.id === "submit" && initials.value !== "" && /^[a-zA-Z.,/]{1,4}$/.test(initials.value)) {
             var storedHighScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
             // Stores both the user and score together as one object.
