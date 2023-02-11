@@ -2,7 +2,7 @@
 
 ## Description
 
-This JavaScript Quiz Game is an application designed to test users knowledge on Javascript. The quiz consists of 5 multiple choice questions related to JavaScript topics, and is timed with the time being deducted for each wrong answer.
+This JavaScript Quiz Game is an application designed to test users knowledge on Javascript. The quiz consists of 5 multiple choice questions related to JavaScript topics. The quiz is timed, with the time being deducted for each wrong answer.
 
 The quiz also includes a pop-up message that notifies user if the answer is correct or wrong, along with different audio being played for correct or wrong answers to provide an engaging experience.
 
@@ -41,7 +41,7 @@ View the completed project below on the deployed link. A screenshot has also bee
 
 ![Code Quiz](./assets/images/code-quiz-ss.png)
 
-[Link to the finished deployed website](https://aboltins.github.io/Code-Quiz)
+[Link to the finished deployed website](https://aboltins.github.io/code-quiz)
 
 ## Credits
 
