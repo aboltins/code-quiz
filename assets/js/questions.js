@@ -1,7 +1,3 @@
-var questions = document.querySelector("#questions");
-var question = document.querySelector("#question-title");
-var choices = document.querySelector("#choices");
-
 // all questions below
 
 var allQuestions = [

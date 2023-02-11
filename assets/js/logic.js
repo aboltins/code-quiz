@@ -1,14 +1,13 @@
 var startBtn = document.querySelector("#start");
-var btn = document.querySelector("button");
-var time = document.querySelector("#time");
+var questions = document.querySelector("#questions");
+var question = document.querySelector("#question-title");
+var choices = document.querySelector("#choices");
 var startScreen = document.querySelector("#start-screen");
-var questionsScreen = document.getElementById("questions").style.display = "block";
-var endScreen = document.getElementById("end-screen");
-var finalScore = document.getElementById("final-score");
+var endScreen = document.querySelector("#end-screen");
+var finalScore = document.querySelector("#final-score");
+var initials = document.querySelector("#initials");
+var feedback = document.querySelector("#feedback");
 var highScores = [];
-var initials = document.getElementById("initials");
-questions.style.display = "none";
-var feedback = document.getElementById("feedback");
 
 //start quiz function
 startBtn.addEventListener("click", function () {
@@ -53,11 +52,13 @@ function feedbackPopUp(correctOrWrong) {
     }, 1200);
 }
 
+// correct answer audio function
 function correctAudio() {
     var audio = new Audio("assets/sfx/correct.wav");
     audio.play();
 }
 
+// wrong answer audio function
 function incorrectAudio() {
     var audio = new Audio("assets/sfx/incorrect.wav");
     audio.play();

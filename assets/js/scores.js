@@ -10,3 +10,5 @@ function clearLocalStorage() {
 
 // event listener to clear local storage upon a Clear Highscores click.
 clearBtn.addEventListener("click", clearLocalStorage);
+
+
