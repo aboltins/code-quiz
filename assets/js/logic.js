@@ -53,6 +53,16 @@ function feedbackPopUp(correctOrWrong) {
     }, 1200);
 }
 
+function correctAudio() {
+    var audio = new Audio("assets/sfx/correct.wav");
+    audio.play();
+}
+
+function incorrectAudio() {
+    var audio = new Audio("assets/sfx/incorrect.wav");
+    audio.play();
+}
+
 
 // creates an ol and buttons for the questions, then appends them.
 var ol = document.createElement("ol");
@@ -93,8 +103,10 @@ function firstGameClick(event) {
     if (event.target !== li2) {
         timeLeft = timeLeft - 10;
         feedbackPopUp("Wrong!");
+        incorrectAudio();
     } else {
         feedbackPopUp("Correct!");
+        correctAudio();
     }
     // removes above click event from executing again
     choices.removeEventListener("click", firstGameClick);
@@ -118,8 +130,10 @@ function secondGameClick(event) {
     if (event.target !== li) {
         timeLeft = timeLeft - 10;
         feedbackPopUp("Wrong!");
+        incorrectAudio();
     } else {
         feedbackPopUp("Correct!");
+        correctAudio();
     }
     choices.removeEventListener("click", secondGameClick);
     thirdGame();
@@ -141,8 +155,10 @@ function thirdGameClick(event) {
     if (event.target !== li4) {
         timeLeft = timeLeft - 10;
         feedbackPopUp("Wrong!");
+        incorrectAudio();
     } else {
         feedbackPopUp("Correct!");
+        correctAudio();
     }
     choices.removeEventListener("click", thirdGameClick);
     fourthGame();
@@ -163,8 +179,10 @@ function fourthGameClick(event) {
     if (event.target !== li) {
         timeLeft = timeLeft - 10;
         feedbackPopUp("Wrong!");
+        incorrectAudio();
     } else {
         feedbackPopUp("Correct!");
+        correctAudio();
     }
     choices.removeEventListener("click", fourthGameClick);
     fifthGame();
@@ -185,8 +203,10 @@ function fifthGameClick(event) {
     if (event.target !== li3) {
         timeLeft = timeLeft - 10;
         feedbackPopUp("Wrong!");
+        incorrectAudio();
     } else {
         feedbackPopUp("Correct!");
+        correctAudio();
     }
     choices.removeEventListener("click", fifthGameClick);
 
